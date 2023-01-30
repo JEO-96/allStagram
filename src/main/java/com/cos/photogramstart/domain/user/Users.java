@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity //
 public class Users{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다.
+	@GeneratedValue(strategy = GenerationType.SEQUENCE) // 번호 증가 전략이 데이터베이스를 따라간다.
 	private int id;
 	
 	@Column(length = 20, unique = true)
@@ -40,7 +40,7 @@ public class Users{
 	private String gender;
 	
 	private String profileImageUrl; // 사진
-	private String role; //권한
+	private String role; // USER, ADMIN
 	
 	private LocalDateTime createDate;
 	
