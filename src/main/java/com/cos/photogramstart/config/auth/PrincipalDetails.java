@@ -12,10 +12,6 @@ import lombok.Data;
 
 @Data
 public class PrincipalDetails implements UserDetails{
-	
-	private static final long serialVersionUID = 1L;
-	
-	
 	private Users user;
 	
 	public PrincipalDetails(Users user) {
