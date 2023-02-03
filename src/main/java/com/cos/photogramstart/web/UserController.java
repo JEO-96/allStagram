@@ -10,18 +10,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class UserController {
 	
 	@GetMapping("/user/{id}")
-	public String profile(@PathVariable int id) {
+	public String profile(@PathVariable Integer id) {
 		return "user/profile";
 	}
 	
 	@GetMapping("/user/{id}/update")
-	public String update(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public String update(@PathVariable Integer id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 		// 1. 추천
-		System.out.println("세션 정보: " + principalDetails.getUser());
+		
 		
 		// 2. 극혐
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

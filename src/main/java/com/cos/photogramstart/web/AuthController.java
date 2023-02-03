@@ -62,7 +62,6 @@ public class AuthController {
 			// User <- signupDtd
 			Users user = signupDto.toEntity();
 			Users userEntity = authService.회원가입(user);
-			System.out.println(userEntity);
 			return "/auth/signin";
 		}
 	}

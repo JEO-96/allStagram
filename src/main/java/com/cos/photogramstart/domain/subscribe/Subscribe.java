@@ -1,44 +1,47 @@
-package com.cos.photogramstart.domain.user;
+package com.cos.photogramstart.domain.subscribe;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.cos.photogramstart.domain.user.Users;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// JPA - Java Persistence API (자바로 데이터를 영구적으로 저장(DB)할 수 있는 API를 제공) 
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity // 디비에 테이블 생성
-public class Users{
+@Table(
+		uniqueConstraints = @UniqueConstraint(
+				name="subscribe_uk",
+				columnNames = {"from_user_id", "to_user_id"}
+				)
+		)
+public class Subscribe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다.
 	private int id;
 	
-	@Column(length = 20, unique = true)
-	private String username;
-	private String password;
-	private String name;
-	private String website;	// 웹사이트
-	private String bio;	// 자기소개
-	private String email;
-	private String phone;
-	private String gender;
+	@JoinColumn(name = "from_user_id")
+	@ManyToOne
+	private Users fromUser;
 	
-	private String profileImageUrl; // 사진
-	private String role; // USER, ADMIN
+	@JoinColumn(name = "to_user_id")
+	@ManyToOne
+	private Users toUser;
 	
 	private LocalDateTime createDate;
 	

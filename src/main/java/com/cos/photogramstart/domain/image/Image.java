@@ -1,44 +1,43 @@
-package com.cos.photogramstart.domain.user;
+package com.cos.photogramstart.domain.image;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
-import javax.persistence.Table;
+
+import com.cos.photogramstart.domain.subscribe.Subscribe;
+import com.cos.photogramstart.domain.user.Users;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// JPA - Java Persistence API (자바로 데이터를 영구적으로 저장(DB)할 수 있는 API를 제공) 
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity // 디비에 테이블 생성
-public class Users{
+public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다.
 	private int id;
+	private String caption; // 오늘 나 너무 피곤해!!
+	private String postImageUrl; // 사진을 전송받아서 그 사진을 서버에 특정 폴더에 저장 - DB에 그 저장된 경로를 insert
 	
-	@Column(length = 20, unique = true)
-	private String username;
-	private String password;
-	private String name;
-	private String website;	// 웹사이트
-	private String bio;	// 자기소개
-	private String email;
-	private String phone;
-	private String gender;
 	
-	private String profileImageUrl; // 사진
-	private String role; // USER, ADMIN
+	@JoinColumn(name = "user_id")
+	@ManyToOne
+	private Users user; 
+	
+	// 이미지 좋아요
+	
+	// 댓글
 	
 	private LocalDateTime createDate;
 	

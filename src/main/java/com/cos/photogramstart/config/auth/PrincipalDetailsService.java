@@ -9,9 +9,11 @@ import com.cos.photogramstart.domain.user.UserRepository;
 import com.cos.photogramstart.domain.user.Users;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class PrincipalDetailsService implements UserDetailsService{
 
 	private final UserRepository userRepository;
@@ -23,6 +25,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		Users userEntity = userRepository.findByUsername(username);
+		log.info(username);
 		
 		if(userEntity == null) {
 			return null;
