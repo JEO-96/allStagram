@@ -43,10 +43,11 @@ public class Subscribe {
 	@ManyToOne
 	private Users toUser;
 	
-	private LocalDateTime createDate;
+
+	private LocalDateTime createdate;
 	
 	@PrePersist // 디비에 INSERT 되기 직전에 실행
 	public void createDate() {
-		this.createDate = LocalDateTime.now();
+		this.createdate = LocalDateTime.now();
 	}
 }
