@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -43,6 +44,7 @@ public class Users{
 	private String phone;
 	private String gender; 
 	
+	@Column(name = "profile_image_url")
 	private String profileImageUrl; // 사진
 	private String role; // USER, ADMIN
 	
